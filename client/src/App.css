@@ -24,30 +24,56 @@
   border-radius: 12px;
 }
 
+
+
 /* Container scroll */
 .message-list {
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
-  background: #111827;
+  background: #244da4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+
+}
+
+.message-row {
+  display: flex;
+}
+
+.message-row-other {
+  justify-content: flex-start;
+}
+
+.message-row-me {
+  justify-content: flex-end;
 }
 
 /* Burbuja */
 .message-bubble {
   background: #111827;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 12px;
- margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   max-width: 80%;
+  border: 2px solid #00f0ff;
 }
+
+.message-bubble-me {
+  background: #1d4ed8;
+  border-color: #60a5fa;
+}
+
 
 /* Username + timestamp */
 .message-header {
   display: flex;
   justify-content: space-between;
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: #9ca3af;
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .message-username {
@@ -55,26 +81,27 @@
 }
 
 .message-time {
-  font-size: .7rem;
-  opacity: .8;
+  font-size: 0.7rem;
+  opacity: 0.8;
 }
 
 .message-text {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 /* Input UI */
-.message-input  {
+.message-input {
   display: flex;
-  gap: .5rem;
-  padding: .75rem 1rem;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
   border-top: 1px solid #1f2937;
   background: #020617;
 }
 
-.message-input-field,  .user-input-field {
+.message-input-field,
+.user-input-field {
   flex: 1;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 999px;
   border: 1px solid #4b5563;
   background: #020617;
@@ -82,23 +109,28 @@
 }
 
 .message-send-button {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   border: none;
   background: #3b82f6;
   color: white;
   font-weight: 500;
   cursor: pointer;
+   border: 2px solid #e8eff0;
 }
 .message-bubble {
-
-
   /* animation */
-  
-  animation: fadeIn .20s ease-in-out;
+
+  animation: fadeIn 0.2s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(3px); }
-  to { opacity: 1; transform: translateY(0px); }
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }

@@ -3,8 +3,7 @@ export type Message = {
   message: string;
   username: string;
   createdAt?: string;
-  messages: Message[];
-  text: string;
+  // messages: Message[];
 }
 
 function formatTime(dateString: string | undefined) {
@@ -16,14 +15,37 @@ function formatTime(dateString: string | undefined) {
   });
 }
 
+ //cammbio
+interface MessageListProps {
+  messages: Message[];
+  currentUser?: string;
+}
 
-const MessageList: React.FC<Message> = ({ messages }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, currentUser }) => {
 
   // /Loading state
     if (messages.length === 0) {
         return <div> Loading messages...</div>
     }
-  return (
+
+// //Feature aligment bubble (me & others)
+// return (
+//   <div className="message-list">
+//     {messages.map((msg, index) => {
+//   const isMe = msg.username === currentUser;
+
+
+//   return (
+//     // <div
+//     //   key={msg._id || index}
+//     //   className={`message-row ${isMe ? "message-row-me" : "message-row-other"}`}
+//     // >
+//     //   <div className={`message-bubble ${isMe ? "message-bubble-me" : "message-bubble"}`}>
+
+
+
+
+return (
     <div className="message-list">
       {messages.map((msg, index) => (
         <div key={msg._id || index} className="message-bubble">

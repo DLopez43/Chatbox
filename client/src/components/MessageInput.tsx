@@ -12,7 +12,10 @@ interface Props{
 
 export default function MessageInput({handleSend, message, setMessage, setUser, user}:Props) {
     return (
-        <form onSubmit = {handleSend}>
+        <form onSubmit = {(e) => {
+            e.preventDefault();
+            handleSend();
+        }}>
         <div className="message-input">
             <input
             type="text"

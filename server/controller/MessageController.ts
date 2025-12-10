@@ -11,7 +11,11 @@ export const MessageController = {
                  message,   
                  username
                 }
-            ) 
+            )
+
+            // emiting to all connected clients
+            const io = req.app.get('io');
+            io.emit('new_message', newMessage);
             res.locals.newMessage = newMessage; 
             return next();
         }catch(err){

@@ -6,6 +6,7 @@ import { DBconnection, DBdisconnect } from "./utils/database";
 import chatRoute from "./routes/chatRoute";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import signUpRoute from "./routes/signUpRoute";
 
 dotenv.config();
 //setting up express app
@@ -45,8 +46,9 @@ app.get("/ping", (req, res) => {
   res.status(200).send("Henlo");
 });
 
-app.use("/", chatRoute);
+app.use("/signup", signUpRoute)
 app.use("/messages", chatRoute);
+app.use("/", chatRoute);
 
 // set up socket events 
 // all express routes should work the same... i hope

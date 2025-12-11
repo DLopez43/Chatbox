@@ -18,7 +18,7 @@ function formatTime(dateString: string | undefined) {
 interface MessageListProps {
   messages: Message[];
   currentUser?: string;
-  bottomRef: React.RefObject<HTMLDivElement>;
+  bottomRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const MessageList: React.FC<MessageListProps> = ({ messages, currentUser, bottomRef }) => {

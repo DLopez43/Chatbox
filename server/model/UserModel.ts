@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
     {
         username: {type: String, required: true , unique: true}, 
-        message: String
+        password : { type : String, required : true},
+        message: {type: String}
     }, 
     {
         timestamps: true

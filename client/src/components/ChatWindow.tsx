@@ -2,7 +2,7 @@ import MessageList from "./MessageList.tsx"
 import type { Message } from "./MessageList.tsx"
 import MessageInput from "./MessageInput"
 import {useEffect, useState, useRef} from 'react'
-import { io, Socket } from "socket.io-client"
+import { io } from "socket.io-client"
 
 
 const ChatWindow: React.FC = () => {
@@ -12,7 +12,7 @@ const ChatWindow: React.FC = () => {
     const [error,setError] = useState <string | null> (null);
     const [loading, setLoading] = useState<boolean>(true);
     
-    const bottomRef = useRef<HTMLDivElement> (null);
+    const bottomRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const savedUser = localStorage.getItem("chatUsername"); 
@@ -107,6 +107,10 @@ const ChatWindow: React.FC = () => {
     //useEffect to auto-scroll to the bottom of the chat...
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+
+        // if (bottomRef.current) {
+        //     bottomRef.current.scrollIntoView({ behavior: "smooth" });
+        // }
     }, [messages]);
 
 

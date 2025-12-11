@@ -47,7 +47,7 @@ This project was built on a full-stack Javascript evironment.Below is an overvie
 
 ## Stretch Goals
 
-- Create a user sign up/ sign in
+- Create a user sign up/ sign in( Began working on this in a SignUp Component Branch)
 - Functionality for clearing message database (end chat, start new chat)
 - Darkmode/Lightmode
 - After user creation align text bubbles to who is the sender(Current user: Align right, Other: Align Left) 

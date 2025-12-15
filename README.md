@@ -89,3 +89,4 @@ This project was built on a full-stack Javascript evironment.Below is an overvie
 - Allowing chat bubbles to align to the designated sender side ( User bubble to the right and incoming message tom the left)
 
 ## Allure for Iterating on this Project
+- A chat feature is a flexible application that can be used and embeded in many applications

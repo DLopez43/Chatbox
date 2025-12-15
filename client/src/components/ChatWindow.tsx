@@ -33,7 +33,7 @@ const ChatWindow: React.FC = () => {
     // create initial socket connection with useEffect
     useEffect(() => {
 
-        const socket = io("http://localhost:3000", {
+        const socket = io("/", {
             withCredentials: true, 
             transports: ["websocket", "polling"]
         })

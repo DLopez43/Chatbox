@@ -61,4 +61,31 @@ This project was built on a full-stack Javascript evironment.Below is an overvie
 - 🐾 Delilah
 
 
+### Quick Pitch
 
+## Problem and Solution
+- The Problem : Shared information gets lost in the void. 
+
+- The Solution : A forum-style chatroom that creates a digital hangout where people can connect, share, and stay in the loop.
+
+## Completed Features
+- Message List
+    - Scroll Box
+    - Auto Scroll
+    - Time Stamp
+    - Username, Time, and Message Display
+
+- ChatBox
+    - Functional Send Button
+
+- Websocket
+    - Connected front end and back end to update client rendering to show messages when new message is sent
+
+
+## Incomplete Features
+- Sign in and Sign up Features
+- Multiple Chatrooms
+- Dark and Light Mode
+- Allowing chat bubbles to align to the designated sender side ( User bubble to the right and incoming message tom the left)
+
+## Allure for Iterating on this Project

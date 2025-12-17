@@ -1,11 +1,11 @@
-import express, { urlencoded,  Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import mongoose from "mongoose";
-import { DBconnection, DBdisconnect } from "./utils/database";
-import chatRoute from "./routes/chatRoute";
-import { createServer } from "http";
-import { Server } from "socket.io";
+import express, { urlencoded, Request, Response, NextFunction } from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { DBconnection, DBdisconnect } from './utils/database';
+import chatRoute from './routes/chatRoute';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 dotenv.config();
 //setting up express app
@@ -15,52 +15,48 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:5173","http://0.0.0.0:5173"],
-    methods: ["GET", "POST"],
-    credentials: true, 
-    allowedHeaders: ["*"]
-  }
-})
-
+    origin: ['http://localhost:5173'],
+    methods: ['GET', 'POST'],
+    credentials: true,
+    allowedHeaders: ['*'],
+  },
+});
 
 await DBconnection();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-io.on("connection", (socket) => {
-  console.log("✅ user connected: ", socket.id);
+io.on('connection', (socket) => {
+  console.log('✅ user connected: ', socket.id);
 
-  socket.on("disconnect", () => {
-    console.log("User disconnected", socket.id);
-  })
-})
-
-
-
-app.set("io", io);
-
-app.get("/ping", (req, res) => {
-  console.log("Hit the endpoint");
-  res.status(200).send("Henlo");
+  socket.on('disconnect', () => {
+    console.log('User disconnected', socket.id);
+  });
 });
 
-app.use("/", chatRoute);
-app.use("/messages", chatRoute);
+app.set('io', io);
 
-// set up socket events 
+app.get('/ping', (req, res) => {
+  console.log('Hit the endpoint');
+  res.status(200).send('Henlo');
+});
+
+app.use('/', chatRoute);
+// app.use("/messages", chatRoute);
+
+// set up socket events
 // all express routes should work the same... i hope
 
-
 app.use((req, res, next) => {
-  res.status(404).json({err: "unknown route"})
-})
+  res.status(404).json({ err: 'unknown route' });
+});
 
-app.use((err: any, req: Request, res : Response, next: NextFunction) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
-    log: "Express error handler caught unknown middleware error",
+    log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: "An error occurred" },
+    message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
@@ -68,6 +64,6 @@ app.use((err: any, req: Request, res : Response, next: NextFunction) => {
 });
 
 const PORT = process.env.PORT || 3000;
-console.log("Port from env:", process.env.PORT)
+console.log('Port from env:', process.env.PORT);
 
-httpServer.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))
+httpServer.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));

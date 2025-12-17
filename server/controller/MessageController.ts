@@ -1,48 +1,42 @@
 import Message from "../model/MessageModel";
-import { Request, Response, NextFunction  } from "express";
+import { Request, Response, NextFunction } from "express";
 
+export const MessageController = {
+  createMessage: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { message, username } = req.body;
+      const newMessage = await Message.create({
+        message,
+        username,
+      });
 
-export const MessageController = { 
-    createMessage: async(req:Request, res: Response, next: NextFunction) => { 
-        try{
-            const { message, username } = req.body;
-            const newMessage = await Message.create(
-                {
-                 message,   
-                 username
-                }
-            )
-
-            // emiting to all connected clients
-            const io = req.app.get('io');
-            io.emit('new_message', newMessage);
-            res.locals.newMessage = newMessage; 
-            return next();
-        }catch(err){
-             return next({
+      // emiting to all connected clients
+      const io = req.app.get("io");
+      io.emit("new_message", newMessage);
+      res.locals.newMessage = newMessage;
+      return next();
+    } catch (err) {
+      return next({
         log: `Something went wrong adding a new message`,
         status: 500,
         message: { error: `An Issue Occured Creating A New Message.` },
       });
-
-        }
-    }, 
-
-    getAllMessages: async (req: Request, res: Response, next: NextFunction) => {
-        try {
-        
-
-            const existingMessage = await Message.find(); 
-
-            res.locals.messages = existingMessage;
-        
-            return next()
-        } catch (err) {
-            return next({
-                log: "error getting messages", 
-                status: 400,
-                message: {err: "error in getMessages middleware"}
-            }); 
-        }
     }
-}
+  },
+
+  getAllMessages: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const existingMessage = await Message.find();
+
+      res.locals.messages = existingMessage;
+
+      return next();
+    } catch (err) {
+      return next({
+        log: "error getting messages",
+        status: 400,
+        message: { err: "error in getMessages middleware" },
+      });
+    }
+  },
+};
